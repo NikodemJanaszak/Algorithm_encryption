@@ -27,7 +27,7 @@
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Podaj tekst do odszyfrowania" />
                   <TextArea fx:id="decryptInput" layoutX="14.0" layoutY="31.0" prefHeight="102.0" prefWidth="674.0" />
-                  <Button fx:id="decrypt" layoutX="317.0" layoutY="162.0" mnemonicParsing="false" onAction="#pressEncrypt" text="Odszyfruj" />
+                  <Button fx:id="decrypt" layoutX="317.0" layoutY="162.0" mnemonicParsing="false" onAction="#pressDecrypt" text="Odszyfruj" />
                   <Label layoutX="14.0" layoutY="219.0" prefHeight="17.0" prefWidth="107.0" text="Odszyfrowany tekst" />
                   <TextArea fx:id="decryptOutput" layoutX="14.0" layoutY="236.0" prefHeight="124.0" prefWidth="672.0" />
                </children></AnchorPane>
