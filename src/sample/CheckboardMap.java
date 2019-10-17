@@ -33,14 +33,13 @@ public class CheckboardMap {
 
     public String encodeText(String toEncode){
         ArrayList<Integer> encoded = new ArrayList<>();
-        for (int i=0; i<toEncode.length()-1; i++){
-            Character temp;
+        for (int i=0; i<toEncode.length(); i++){
             encoded.add(encodeMap.get(toEncode.charAt(i)));
         }
-        return listToStrig(encoded);
+        return listIntToStrig(encoded);
     }
 
-    public String listToStrig(ArrayList<Integer> intList){
+    public String listIntToStrig(ArrayList<Integer> intList){
         String result = "";
         for (int i=0; i<intList.size();i++){
             result += intList.get(i);
@@ -51,13 +50,30 @@ public class CheckboardMap {
     public String decodeText(String toDecode){
         ArrayList<Character> decoded = new ArrayList<>();
         for (int i=0; i<toDecode.length(); i++){
-            if(toDecode.charAt(i) == 0 || toDecode.charAt(i) == 1 || toDecode.charAt(i) == 2){
-
-
+            if(toDecode.charAt(i) == '0' || toDecode.charAt(i) == '1' || toDecode.charAt(i) == '2'){
+                int temp = toDecode.charAt(i)-'0';
+                decoded.add(decodeMap.get(temp));
             }
+            else {
+                int char1 = toDecode.charAt(i) - '0';
+                int char2 = toDecode.charAt(i+1) - '0';
+                int result = char1*10 + char2;
+                decoded.add(decodeMap.get(result));
+                i++;
+            }
+
+
         }
-        return decoded.toString();
+        return listCharToString(decoded);
     }
 
+    public String listCharToString(ArrayList<Character> charList){
+        String result = "";
+        for (int i=0; i<charList.size();i++){
+            result += charList.get(i);
+        }
+        return result;
+
+    }
 
 }
