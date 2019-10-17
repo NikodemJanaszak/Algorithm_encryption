@@ -2,6 +2,7 @@ package sample;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class CheckboardMap {
     private HashMap<Character, Integer> encodeMap;
@@ -33,9 +34,24 @@ public class CheckboardMap {
 
     public String encodeText(String toEncode){
         ArrayList<Integer> encoded = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>(List.of(2,3,4));
         for (int i=0; i<toEncode.length(); i++){
             encoded.add(encodeMap.get(toEncode.charAt(i)));
         }
+        System.out.println("test");
+        Integer j=0;
+            for (int i = 0; i < encoded.size(); i++) {
+                encoded.set(i, encoded.get(i) * temp.get(j));
+                if(j==2)
+                    j=0;
+                else
+                    j++;
+            }
+
+        System.out.println("test2");
+        encoded.add(temp.get(0));
+        encoded.add(temp.get(1));
+        encoded.add(temp.get(2));
         return listIntToStrig(encoded);
     }
 
