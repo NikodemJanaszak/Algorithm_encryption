@@ -34,24 +34,21 @@ public class CheckboardMap {
 
     public String encodeText(String toEncode){
         ArrayList<Integer> encoded = new ArrayList<>();
-        ArrayList<Integer> temp = new ArrayList<>(List.of(2,3,4));
+        ArrayList<Integer> codeKey = new ArrayList<>(List.of(2,3,4));
         for (int i=0; i<toEncode.length(); i++){
             encoded.add(encodeMap.get(toEncode.charAt(i)));
         }
-        System.out.println("test");
         Integer j=0;
             for (int i = 0; i < encoded.size(); i++) {
-                encoded.set(i, encoded.get(i) * temp.get(j));
+                encoded.set(i, encoded.get(i) * codeKey.get(j));
                 if(j==2)
                     j=0;
                 else
                     j++;
             }
-
-        System.out.println("test2");
-        encoded.add(temp.get(0));
-        encoded.add(temp.get(1));
-        encoded.add(temp.get(2));
+        encoded.add(codeKey.get(0));
+        encoded.add(codeKey.get(1));
+        encoded.add(codeKey.get(2));
         return listIntToStrig(encoded);
     }
 
@@ -65,20 +62,40 @@ public class CheckboardMap {
 
     public String decodeText(String toDecode){
         ArrayList<Character> decoded = new ArrayList<>();
-        for (int i=0; i<toDecode.length(); i++){
-            if(toDecode.charAt(i) == '0' || toDecode.charAt(i) == '1' || toDecode.charAt(i) == '2'){
-                int temp = toDecode.charAt(i)-'0';
-                decoded.add(decodeMap.get(temp));
+        ArrayList<Integer> toDecodeInt = new ArrayList<>();
+
+        for (int i=0; i<toDecode.length();i++){
+            int temp = toDecode.charAt(i)-'0';
+            toDecodeInt.add(temp);
+        }
+        Integer lastKey = toDecodeInt.get(toDecodeInt.size()-1);
+        Integer midKey = toDecodeInt.get(toDecodeInt.size()-2);
+        Integer firstKey = toDecodeInt.get(toDecodeInt.size()-3);
+
+        ArrayList<Integer> codeKey = new ArrayList<>(List.of(firstKey,midKey,lastKey));
+
+        int j=0;
+        for (int i=0; i<toDecodeInt.size()-3;i++){
+            System.out.println(toDecodeInt.get(i));
+            toDecodeInt.set(i,toDecodeInt.get(i)/codeKey.get(j));
+            if(j==2)
+                j=0;
+            else
+                j++;
+            System.out.println(toDecodeInt.get(i));
+        }
+
+        for (int i=0; i<toDecodeInt.size()-3; i++){
+            if(toDecodeInt.get(i) == 0 || toDecodeInt.get(i) == 1 || toDecodeInt.get(i) == 2){
+                decoded.add(decodeMap.get(i));
             }
             else {
-                int char1 = toDecode.charAt(i) - '0';
-                int char2 = toDecode.charAt(i+1) - '0';
-                int result = char1*10 + char2;
+                int int1 = toDecodeInt.get(i);
+                int int2 = toDecodeInt.get(i + 1);
+                int result = int1 * 10 + int2;
                 decoded.add(decodeMap.get(result));
                 i++;
             }
-
-
         }
         return listCharToString(decoded);
     }
