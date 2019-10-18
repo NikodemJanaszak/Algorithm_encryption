@@ -45,7 +45,7 @@ public class CheckboardMap {
 
         Integer j=0;
         for(int i=0; i<digits.size();i++){
-            if(digits.get(i)+codeKey.get(j)>10){
+            if(digits.get(i)+codeKey.get(j)>=10){
                 int temp = (digits.get(i)+codeKey.get(j))%10;
                 digits.set(i, temp);
             }
