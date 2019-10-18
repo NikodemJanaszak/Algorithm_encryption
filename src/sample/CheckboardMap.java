@@ -34,22 +34,32 @@ public class CheckboardMap {
 
     public String encodeText(String toEncode){
         ArrayList<Integer> encoded = new ArrayList<>();
-        ArrayList<Integer> codeKey = new ArrayList<>(List.of(2,3,4));
+        ArrayList<Integer> codeKey = new ArrayList<>(List.of(2,3));
         for (int i=0; i<toEncode.length(); i++){
             encoded.add(encodeMap.get(toEncode.charAt(i)));
         }
-        Integer j=0;
-            for (int i = 0; i < encoded.size(); i++) {
-                encoded.set(i, encoded.get(i) * codeKey.get(j));
-                if(j==2)
-                    j=0;
-                else
-                    j++;
+        ArrayList<Integer>encodedV2 = new ArrayList<>();
+
+        for(int i=0; i<encoded.size();i++){
+            if(encoded.get(i)>9){
+                encodedV2.add(encoded.get(i)/10);
+                encodedV2.add(encoded.get(i)%10);
             }
-        encoded.add(codeKey.get(0));
-        encoded.add(codeKey.get(1));
-        encoded.add(codeKey.get(2));
-        return listIntToStrig(encoded);
+            else {
+                encodedV2.add(encoded.get(i));
+            }
+        }
+
+        for (int i = 0; i < encodedV2.size(); i++) {
+            if(encodedV2.get(i)<5)
+                encodedV2.set(i, encodedV2.get(i) + codeKey.get(0));
+            else 
+                encodedV2.set(i, encodedV2.get(i) - codeKey.get(1));
+        }
+        encodedV2.add(codeKey.get(0));
+        encodedV2.add(codeKey.get(1));
+
+        return listIntToStrig(encodedV2);
     }
 
     public String listIntToStrig(ArrayList<Integer> intList){
