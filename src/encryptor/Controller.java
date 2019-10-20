@@ -1,4 +1,4 @@
-package sample;
+package encryptor;
 
 
 import javafx.event.ActionEvent;
