@@ -168,7 +168,6 @@ public class CheckboardMap {
             if (toDecodeInt.get(i) == 1 || toDecodeInt.get(i) == 2 || toDecodeInt.get(i) == 4 || toDecodeInt.get(i) == 5) {
                 int temp = (toDecodeInt.get(i) * 10) + toDecodeInt.get(i + 1);
                 decoded.add(decodeMap.get(temp));
-                System.out.println(decodeMap.get(temp));
                 i++;
             } else {
                 decoded.add(decodeMap.get(toDecodeInt.get(i)));
