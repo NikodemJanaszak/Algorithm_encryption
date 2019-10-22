@@ -47,6 +47,7 @@ public class CheckboardMap {
             put('y', 15);
             put('u', 16);
             put('i', 17);
+            put('\n', 18);
         }};
 
         this.decodeMap = new HashMap<Integer, Character>() {{
@@ -88,6 +89,7 @@ public class CheckboardMap {
             put(15, 'y');
             put(16, 'u');
             put(17, 'i');
+            put(18, '\n');
         }};
     }
 
